@@ -3,12 +3,13 @@ const token =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RkM2FjODM4MzRiZjAwMTUwMDA3M2EiLCJpYXQiOjE3NDI1NTcxOTUsImV4cCI6MTc0Mzc2Njc5NX0.TmDJVmr1vtOhSR0yA-myKN2WONTj44gCAz4p3B6dZnI"
 
 class Product {
-  constructor(name, description, brand, imageURL, price) {
+  constructor(name, description, brand, imageURL, price, id = null) {
     this.name = name
     this.description = description
     this.brand = brand
     this.imageURL = imageURL
     this.price = price
+    this.id = id
   }
 
   mostraDettagli() {
@@ -24,7 +25,8 @@ class Product {
             <h5 class="card-title">${this.name}</h5>
             <p class="card-text">${this.description}</p>
             <p class="card-text"><strong>$${this.price}</strong></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <button class="btn btn-primary edit-btn" data-id="${this._id}">Edit</button>
+            <button class="btn btn-danger delete-btn" data-id="${this._id}">Delete</button>
           </div>
         </div>
       </div>
@@ -32,7 +34,7 @@ class Product {
   }
 }
 
-const loadProducts = () => {
+const loadProducts1 = () => {
   fetch(endPoint, {
     method: "GET",
     headers: {
@@ -61,7 +63,7 @@ const addNewProduct = () => {
     "New Product",
     "This is a new product",
     "Brand New",
-    "https://example.com/image.jpg",
+    "https://th.bing.com/th/id/OIP.TXVLUVnkjJg7jPAMDtKGHQHaEK?w=294&h=180&c=7&r=0&o=5&pid=1.7",
     45.0
   )
 
@@ -69,8 +71,10 @@ const addNewProduct = () => {
   container.innerHTML += newProduct.createCard()
 }
 
-loadProducts()
+loadProducts1()
 
 document
   .querySelector("#addProductBtn")
   .addEventListener("click", addNewProduct)
+
+//   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RkM2FjODM4MzRiZjAwMTUwMDA3M2EiLCJpYXQiOjE3NDI1NTcxOTUsImV4cCI6MTc0Mzc2Njc5NX0.TmDJVmr1vtOhSR0yA-myKN2WONTj44gCAz4p3B6dZnI"

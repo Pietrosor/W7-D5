@@ -14,7 +14,7 @@ const createProduct = (productData) => {
     .then((response) => response.json())
     .then((data) => {
       console.log("Product created:", data)
-      loadProducts() // Carica i prodotti dopo la creazione
+      loadProducts()
     })
     .catch((error) => console.error("Error creating product:", error))
 }
